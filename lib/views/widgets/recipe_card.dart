@@ -6,7 +6,8 @@ class RecipeCard extends StatelessWidget {
   final String cookTime;
   final String thumbnailUrl;
 
-  RecipeCard({
+  const RecipeCard({ 
+    super.key,
     required this.title,
     required this.cookTime,
     required this.rating,
@@ -16,7 +17,7 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
       width: MediaQuery.of(context).size.width,
       height: 180,
       decoration: BoxDecoration(
@@ -25,7 +26,7 @@ class RecipeCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.6),
-            offset: Offset(
+            offset: const Offset(
               0.0,
               10.0,
             ),
@@ -45,65 +46,77 @@ class RecipeCard extends StatelessWidget {
       child: Stack(
         children: [
           Align(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
+            alignment: Alignment.center,
+             child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
               ),
             ),
-            alignment: Alignment.center,
           ),
           Align(
+            alignment: Alignment.bottomLeft,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                         size: 18,
                       ),
-                      SizedBox(width: 7),
-                      Text(rating),
+                      const SizedBox(width: 7),
+                      Text(
+                        rating,
+                        style: const TextStyle(
+                          color: Colors.white
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.schedule,
                         color: Colors.yellow,
                         size: 18,
                       ),
-                      SizedBox(width: 7),
-                      Text(cookTime),
+                      const SizedBox(width: 7),
+                      Text(
+                        cookTime,
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ), 
+                      ),
                     ],
                   ),
                 )
               ],
             ),
-            alignment: Alignment.bottomLeft,
           ),
         ],
       ),

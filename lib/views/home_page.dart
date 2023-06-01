@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/models/recipe.dart';
 import 'package:recipe_app/views/widgets/recipe_card.dart';
+import 'package:recipe_app/views/router/router.dart';
 
 import '../models/recipe.api.dart';
 
@@ -26,17 +27,16 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _isLoading = false;
     });
-
-    print(_recipes);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        backgroundColor: Colors.black,
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(Icons.restaurant_menu),
             SizedBox(
               width: 10,
@@ -50,11 +50,16 @@ class _HomePageState extends State<HomePage> {
           : ListView.builder(
               itemCount: _recipes.length,
               itemBuilder: (context, index) {
-                return RecipeCard(
-                  title: _recipes[index].name,
-                  cookTime: _recipes[index].totalTime,
-                  rating: _recipes[index].rating.toString(),
-                  thumbnailUrl: _recipes[index].images,
+                return GestureDetector(
+                  child: RecipeCard(
+                    title: _recipes[index].name ?? '',
+                    cookTime: _recipes[index].totalTime ?? '',
+                    rating: _recipes[index].rating.toString(),
+                    thumbnailUrl: _recipes[index].imageUrl ?? '',
+                  ),
+                  onTap: () {
+                    RouterNavigation(recipe: _recipes[index]).navigateRecipeDetails(context);
+                  },
                 );
               },
             ),

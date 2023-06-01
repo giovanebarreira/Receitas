@@ -11,17 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Receitas',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.white,
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
-        )
-      ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }

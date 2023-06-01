@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class RecipeApi {
   static Future<List<Recipe>> getRecipe() async {
     var uri = Uri.https('yummly2.p.rapidapi.com', 'feeds/list', {
-      'limit': '18',
+      'limit': '50',
       'start': '0',
       'tag': 'list.recipe.popular'
     });
@@ -17,12 +17,12 @@ class RecipeApi {
     });
 
     Map data = jsonDecode(response.body);
-    List _results = [];
+    List results = [];
 
     for (var i in data['feed']) {
-      _results.add(i['content']['details']);
+      results.add(i['content']);
     }
 
-    return Recipe.recipesFromSnapshot(_results);
+    return Recipe.recipesFromSnapshot(results);
   }
 }
