@@ -24,9 +24,27 @@ class RecipeDetails extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                recipe?.imageUrl ?? '',
-                fit: BoxFit.cover,
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.6),
+                    offset: const Offset(
+                      0.0,
+                      10.0,
+                    ),
+                    blurRadius: 10.0,
+                    spreadRadius: -6.0,
+                  ),
+                ],
+                  image: DecorationImage(
+                    image: NetworkImage(recipe?.imageUrl ?? ''),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
